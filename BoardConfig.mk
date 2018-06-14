@@ -26,6 +26,10 @@ TARGET_OTA_ASSERT_DEVICE := merlin
 TARGET_INIT_VENDOR_LIB := libinit_merlin
 TARGET_RECOVERY_DEVICE_MODULES := libinit_merlin
 
+# Kernel Toolchain
+KERNEL_TOOLCHAIN := $(ANDROID_BUILD_TOP)/prebuilts/gcc/$(HOST_OS)-x86/arm/arm-eabi-7.2/bin
+KERNEL_TOOLCHAIN_PREFIX := arm-eabi-
+
 # Kernel
 TARGET_KERNEL_CONFIG := merlin_defconfig
 
