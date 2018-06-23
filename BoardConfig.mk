@@ -22,10 +22,6 @@ DEVICE_PATH := device/motorola/merlin
 # Asserts
 TARGET_OTA_ASSERT_DEVICE := merlin
 
-# Init
-TARGET_INIT_VENDOR_LIB := libinit_merlin
-TARGET_RECOVERY_DEVICE_MODULES := libinit_merlin
-
 # Kernel
 TARGET_KERNEL_CONFIG := merlin_defconfig
 
