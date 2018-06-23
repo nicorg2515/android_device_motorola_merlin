@@ -3,7 +3,7 @@
 # Audio
 persist.vendor.audio.fluence.mode=endfire
 persist.vendor.audio.fluence.voicecall=true
-ro.vendor.audio.fluencetype=fluence
+ro.vendor.audio.sdk.fluencetype=fluence
 
 # Display
 ro.sf.lcd_density=320
