@@ -10,6 +10,7 @@ ro.sf.lcd_density=320
 debug.hwui.use_buffer_age=false
 
 # Radio
+persist.radio.aosp_usr_pref_sel=true
 persist.radio.force_get_pref=1
 persist.radio.mot_ecc_custid=common
 persist.radio.mot_ecc_enabled=1
