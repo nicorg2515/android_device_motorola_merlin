@@ -53,6 +53,10 @@ WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
 endif
 endif
 
+# TextClassifier smart selection model files
+PRODUCT_PACKAGES += \
+	textclassifier.smartselection.bundle1
+
 # Properties
 TARGET_SYSTEM_PROP += $(DEVICE_PATH)/system.prop
 
