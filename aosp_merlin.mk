@@ -1,4 +1,4 @@
-# Copyright (C) 2015 The CyanogenMod Project
+# Copyright (C) 2015-2016 The CyanogenMod Project
 #           (C) 2017 The LineageOS Project
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
@@ -15,24 +15,22 @@
 
 $(call inherit-product, device/motorola/merlin/full_merlin.mk)
 
-# Bootanimation resolution.
+#Bootanimation res
 TARGET_BOOT_ANIMATION_RES := 720
 
-# Inherit some common aosp stuff.
-$(call inherit-product, vendor/rr/config/common_full_phone.mk)
+# Inherit common Android Go configurations
+#$(call inherit-product, build/target/product/go_defaults.mk)
+#IS_GO_VERSION := true
+#TARGET_MINIMAL_APPS := true
 
-# Boot animation
-TARGET_BOOTANIMATION_HALF_RES := true
-TARGET_SCREEN_WIDTH := 720
-TARGET_SCREEN_HEIGHT := 1280
+# Inherit some common aosp stuff.
+$(call inherit-product, vendor/aosp/config/common.mk)
 
 ## Device identifier. This must come after all inclusions
 PRODUCT_DEVICE := merlin
-PRODUCT_NAME := rr_merlin
+PRODUCT_NAME := aosp_merlin
 PRODUCT_MODEL := MotoG3-TE
 PRODUCT_BRAND := Motorola
 PRODUCT_MANUFACTURER := Motorola
 PRODUCT_RELEASE_NAME := merlin
-TARGET_ARCH := arm
-TARGET_BOOT_ANIMATION_RES := 720
-TARGET_DENSITY := xhdpi
+TARGET_GAPPS_ARCH=arm
