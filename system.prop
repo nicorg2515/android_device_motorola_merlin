@@ -5,6 +5,10 @@ persist.vendor.audio.fluence.mode=endfire
 persist.vendor.audio.fluence.voicecall=true
 ro.vendor.audio.fluencetype=fluence
 
+# Device
+ro.build.product=merlin
+ro.mot.build.customerid=retail
+
 # Display
 ro.sf.lcd_density=320
 debug.hwui.use_buffer_age=false
