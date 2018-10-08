@@ -13,6 +13,10 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+# Platform
+# Must define platform variant before including any common things
+TARGET_BOARD_PLATFORM_VARIANT := msm8939
+
 include device/motorola/msm8916-common/BoardConfigCommon.mk
 
 -include vendor/motorola/merlin/BoardConfigVendor.mk
