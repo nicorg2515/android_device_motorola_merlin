@@ -50,9 +50,5 @@ WITH_DEXPREOPT_BOOT_IMG_AND_SYSTEM_SERVER_ONLY := true
 endif
 endif
 
-# TextClassifier smart selection model files
-PRODUCT_PACKAGES += \
-	textclassifier.smartselection.bundle1
-
 # Sensors
 BOARD_USES_STML0XX_SENSOR_HUB := true
