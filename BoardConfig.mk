@@ -52,3 +52,6 @@ endif
 
 # Sensors
 BOARD_USES_STML0XX_SENSOR_HUB := true
+
+# SELinux
+BOARD_SEPOLICY_DIRS += $(DEVICE_PATH)/sepolicy

@@ -1,0 +1,1 @@
+/(vendor|system/vendor)/bin/init\.power\.sh        u:object_r:init_power_exec:s0

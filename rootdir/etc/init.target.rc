@@ -26,105 +26,51 @@
 #
 
 on boot
-
-    # Switch to interactive and let PowerHAL configure it
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor interactive
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/go_hispeed_load
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/hispeed_freq
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy
-    chown system system /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-    chmod 0644 /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads
-
-    # little cluster will be hotplugged, but not governed by power HAL
-    chown system system /sys/module/cluster_plug/parameters/low_power_mode
-    chmod 0644 /sys/module/cluster_plug/parameters/low_power_mode
-
-    chown system system /sys/module/cpu_boost/parameters/input_boost_freq
-    chmod 0644 /sys/module/cpu_boost/parameters/input_boost_freq
-
-on property:sys.boot_completed=1
-    setprop sys.io.scheduler fiops
-
-    write /sys/module/lpm_levels/parameters/sleep_disabled 0
-    write /sys/devices/system/cpu/cpu0/online 1
-
-    # HMP scheduler (big.Little cluster related) settings
-    write /proc/sys/kernel/sched_upmigrate 60
-    write /proc/sys/kernel/sched_downmigrate 35
-    write /proc/sys/kernel/sched_small_task 20
-
-    # Enable sched guided freq control
-    write /proc/sys/kernel/sched_freq_inc_notify 50000
-    write /proc/sys/kernel/sched_freq_dec_notify 50000
-
-    # cpu idle load threshold
-    write /sys/devices/system/cpu/cpu0/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu1/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu2/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu3/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu4/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu5/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu6/sched_mostly_idle_load 30
-    write /sys/devices/system/cpu/cpu7/sched_mostly_idle_load 30
-
-    write /sys/module/cpu_boost/parameters/boost_ms 20
-    write /sys/module/cpu_boost/parameters/sync_threshold 960000
-    write /sys/module/cpu_boost/parameters/input_boost_ms 40
-
-    start batt_health
-
-    write /sys/module/lowmemorykiller/parameters/enable_adaptive_lmk 1
-    write /sys/module/lowmemorykiller/parameters/vmpressure_file_min 81250
-
+    # disable thermal core_control to update interactive gov settings
     write /sys/module/msm_thermal/core_control/enabled 0
-    write /sys/module/cluster_plug/parameters/active 0
 
     # enable governor for perf cluster
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/above_hispeed_delay "20000 1113600:50000"
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 1
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/timer_rate 20000
-    write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 50000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 533333
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
 
     # enable governor for power cluster
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/above_hispeed_delay "25000 800000:50000"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/go_hispeed_load 80
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/timer_rate 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/hispeed_freq 998400
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "50 800000:65 998400:90"
-    write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 499200
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
 
-    # configure hotplug
-    write /sys/module/cluster_plug/parameters/load_threshold_down 40
-    write /sys/module/cluster_plug/parameters/load_threshold_up 80
-    write /sys/module/cluster_plug/parameters/vote_threshold_down 6
-    write /sys/module/cluster_plug/parameters/vote_threshold_up 2
-    write /sys/module/cluster_plug/parameters/sampling_time 80
-
+    # enable thermal core_control now
     write /sys/module/msm_thermal/core_control/enabled 1
-    write /sys/module/cluster_plug/parameters/active 1
 
-    # Enable core control
-    write /sys/devices/system/cpu/cpu0/core_ctl/min_cpus 0
-    write /sys/devices/system/cpu/cpu0/core_ctl/max_cpus 4
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_up_thres 68
-    write /sys/devices/system/cpu/cpu0/core_ctl/busy_down_thres 40
-    write /sys/devices/system/cpu/cpu0/core_ctl/offline_delay_ms 100
-    write /sys/devices/system/cpu/cpu0/core_ctl/task_thres 4
-    write /sys/devices/system/cpu/cpu0/core_ctl/is_big_cluster 1
-    write /sys/devices/system/cpu/cpu4/core_ctl/busy_up_thres 20
-    write /sys/devices/system/cpu/cpu4/core_ctl/busy_down_thres 5
-    write /sys/devices/system/cpu/cpu4/core_ctl/offline_delay_ms 5000
-    write /sys/devices/system/cpu/cpu4/core_ctl/not_preferred 1
+    # add a cpuset for the camera daemon
+    # we want all the little cores for camera
+    mkdir /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon
+    chown system system /dev/cpuset/camera-daemon/tasks
+    chmod 0664 /dev/cpuset/camera-daemon/tasks
+
+on property:sys.boot_completed=1
+    setprop sys.io.scheduler fiops
+
+    start vendor.power_sh
+
+    write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 10
+
+    # Configure foreground and background cpusets
+    # Reserve CPU 7 for the top app
+    write /dev/cpuset/foreground/cpus 0-6
+    write /dev/cpuset/background/cpus 4-6
+    write /dev/cpuset/system-background/cpus 4-6
+    write /dev/cpuset/restricted/cpus 4-6
+    write /dev/cpuset/top-app/cpus 0-7
+    write /dev/cpuset/camera-daemon/cpus 4-7
+
+service vendor.power_sh /vendor/bin/init.power.sh
+    class main
+    user root
+    group root system
+    disabled
+    oneshot
 
 on property:ro.boot.hardware.sku=XT1556
     # configure properties for XT1556
