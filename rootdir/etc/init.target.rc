@@ -51,7 +51,6 @@ on init
     write /sys/class/devfreq/cpubw/governor "performance"
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "performance"
 
-on boot
     # add a cpuset for the camera daemon
     # we want all the little cores for camera
     mkdir /dev/cpuset/camera-daemon
