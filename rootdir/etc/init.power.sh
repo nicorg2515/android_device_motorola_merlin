@@ -57,7 +57,7 @@ then
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 960000:85 1113600:90 1344000:80"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 0
 else
     write /sys/devices/system/cpu/cpu0/online 1
     write /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor "interactive"
@@ -68,7 +68,7 @@ else
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/target_loads "1 960000:85 1113600:90 1344000:80"
     write /sys/devices/system/cpu/cpu0/cpufreq/interactive/min_sample_time 50000
-    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 960000
+    write /sys/devices/system/cpu/cpu0/cpufreq/scaling_min_freq 0
 fi
 
     # enable governor for power cluster
@@ -83,7 +83,7 @@ then
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 0
 else
     write /sys/devices/system/cpu/cpu4/online 1
     write /sys/devices/system/cpu/cpu4/cpufreq/scaling_governor "interactive"
@@ -94,7 +94,7 @@ else
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/io_is_busy 0
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/target_loads "1 800000:90"
     write /sys/devices/system/cpu/cpu4/cpufreq/interactive/min_sample_time 40000
-    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 800000
+    write /sys/devices/system/cpu/cpu4/cpufreq/scaling_min_freq 0
 fi
 
     # enable thermal core_control now
