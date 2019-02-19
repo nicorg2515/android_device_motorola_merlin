@@ -40,7 +40,10 @@
     </backend_names>
 
     <pcm_ids>
-        <!-- empty -->
+	<usecase name="USECASE_VOICEMMODE1_CALL" type="in" id="27" />
+	<usecase name="USECASE_VOICEMMODE1_CALL" type="out" id="27" />
+	<usecase name="USECASE_VOICEMMODE2_CALL" type="in" id="28" />
+	<usecase name="USECASE_VOICEMMODE2_CALL" type="out" id="28" />
     </pcm_ids>
 
     <device_names>
