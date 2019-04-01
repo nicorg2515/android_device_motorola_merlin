@@ -75,6 +75,12 @@ on property:sys.boot_completed=1
     write /dev/cpuset/top-app/cpus 0-7
     write /dev/cpuset/camera-daemon/cpus 4-7
 
+service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
+    class core
+    user root
+    group root
+    writepid /dev/cpuset/system-background/tasks
+
 service vendor.power_sh /vendor/bin/init.power.sh
     class main
     user root
