@@ -61,8 +61,6 @@ on init
 on property:sys.boot_completed=1
     setprop sys.io.scheduler fiops
 
-    start vendor.power_sh
-
     write /sys/class/net/rmnet0/queues/rx-0/rps_cpus 10
 
     write /sys/class/kgsl/kgsl-3d0/devfreq/governor "msm-adreno-tz"
@@ -74,6 +72,8 @@ on property:sys.boot_completed=1
     write /dev/cpuset/restricted/cpus 4-6
     write /dev/cpuset/top-app/cpus 0-7
     write /dev/cpuset/camera-daemon/cpus 4-7
+
+    start vendor.power_sh
 
 service vendor.msm_irqbalance /vendor/bin/msm_irqbalance -f /vendor/etc/msm_irqbalance.conf
     class core

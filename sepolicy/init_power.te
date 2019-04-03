@@ -20,3 +20,5 @@ allow init_power sysfs_msm_power:file write;
 # write to files proc/sys/kernel/sched_*
 allow init_power proc_kernel_sched:file w_file_perms;
 
+# set vendor.post_boot.parsed
+set_prop(init_power, vendor_mpctl_prop)

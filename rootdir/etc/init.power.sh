@@ -150,3 +150,5 @@ then
     # Enable dynamic clock gating
     write /sys/module/lpm_levels/lpm_workarounds/dynamic_clock_gating 1
 fi
+
+setprop vendor.post_boot.parsed 1
