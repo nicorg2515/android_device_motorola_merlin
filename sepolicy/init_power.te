@@ -16,6 +16,8 @@ allow init_power sysfs_devices_system_cpu:dir relabelto;
 allow init_power sysfs_devices_system_cpu:file { relabelto w_file_perms };
 allow init_power sysfs_thermal:file w_file_perms;
 allow init_power sysfs_msm_power:file write;
+r_dir_file(init_power, sysfs_devfreq)
+allow init_power sysfs_devfreq:file w_file_perms;
 
 # write to files proc/sys/kernel/sched_*
 allow init_power proc_kernel_sched:file w_file_perms;

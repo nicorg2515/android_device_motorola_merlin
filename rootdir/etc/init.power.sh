@@ -37,10 +37,10 @@ fi
 
     write /proc/sys/kernel/sched_prefer_idle 0
 
-    write /sys/class/devfreq/cpubw/governor "bw_hwmon"
-    write /sys/class/devfreq/cpubw/bw_hwmon/io_percent 20
-    write /sys/class/devfreq/gpubw/bw_hwmon/io_percent 40
-    write /sys/class/devfreq/mincpubw/governor "cpufreq"
+    write /sys/class/devfreq/soc:qcom,cpubw/governor "bw_hwmon"
+    write /sys/class/devfreq/soc:qcom,cpubw/bw_hwmon/io_percent 20
+    write /sys/class/devfreq/soc:qcom,gpubw/bw_hwmon/io_percent 40
+    write /sys/class/devfreq/soc:qcom,mincpubw/governor "cpufreq"
 
     # disable thermal core_control to update interactive gov settings
     write /sys/module/msm_thermal/core_control/enabled 0
